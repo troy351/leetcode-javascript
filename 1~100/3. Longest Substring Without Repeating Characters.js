@@ -3,28 +3,14 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function (s) {
-    if (s === '') {
-        return 0;
-    }
-    // trick for string includes the end charactor
-    s += s[s.length - 1];
+    var index = [];
+    var start = 0, max = 0;
 
-    var map = new Map();
-    var start = 0, i = 0, max = 0;
-    while (i < s.length) {
-        if (map.has(s[i])) {
-            if (i - start > max) {
-                max = i - start;
-            }
-
-            // start from where the duplicate character shows
-            start = map.get(s[i]) + 1;
-            i = start;
-            map.clear();
-        }
-
-        map.set(s[i], i);
-        i++;
+    for (var i = 0; i < s.length; i++) {
+        index[s[i]] = index[s[i]] || 0;
+        start = Math.max(index[s[i]], start);
+        max = Math.max(max, i - start + 1);
+        index[s[i]] = i + 1;
     }
 
     return max;
