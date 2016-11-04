@@ -3,4 +3,4 @@ Answers for problems in [leetcode.com](https://leetcode.com), written in JavaScr
 Analysis was written in Chinese.
 ##note
 * Question 29.  
-For JavaScript does not support 64-bit integer for bit-operation, so use C++ instead.
+JavaScript does not support 64-bit integer in bit-operation, so I used C++ instead.

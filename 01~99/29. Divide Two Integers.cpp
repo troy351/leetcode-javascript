@@ -1,6 +1,5 @@
 /*
-for JavaScript does not support 64-bit integer for bit-operation,
-so use C++ instead.
+JavaScript does not support 64-bit integer in bit-operation, so I used C++ instead.
 */
 class Solution {
 public:
