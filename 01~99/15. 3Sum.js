@@ -15,10 +15,10 @@ var threeSum = function (nums) {
         while (j < k) {
             var sum = nums[i] + nums[j] + nums[k];
             if (sum === 0) result.push([nums[i], nums[j], nums[k]]);
-            if (sum <= 0) while (nums[j] == nums[++j] && j < k);
-            if (sum >= 0) while (nums[k--] == nums[k] && j < k);
+            if (sum <= 0) while (nums[j] === nums[++j] && j < k);
+            if (sum >= 0) while (nums[k--] === nums[k] && j < k);
         }
-        while (nums[i] == nums[++i] && i < nums.length - 2);
+        while (nums[i] === nums[++i] && i < nums.length - 2);
     }
 
     return result;
