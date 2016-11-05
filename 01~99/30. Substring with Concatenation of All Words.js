@@ -16,7 +16,7 @@ var findSubstring = function (s, words) {
     for (var k = 0; k < length; k++) {
         s = ss.substr(k);
         var counts = words.length;
-        var i, start = -1;
+        var i, key, start = -1;
         // if there was no words in `wordsMap` shown in `s`, just try next `k`
         // this saves 90% time
         for (i = 0; i < s.length; i += length) {
@@ -24,8 +24,8 @@ var findSubstring = function (s, words) {
         }
         if (i >= s.length) continue;
 
-        // init wordsMap pos
-        for (var key in wordsMap) {
+        // init wordsMap position
+        for (key in wordsMap) {
             wordsMap[key].pos = [];
         }
 
@@ -33,12 +33,12 @@ var findSubstring = function (s, words) {
             var word = s.substr(i, length);
             if (wordsMap[word]) {
                 if (wordsMap[word].pos.length < wordsMap[word].count) {
-                    // still can shown
+                    // can still add more `word`
                     start = start === -1 ? i : start;
                     wordsMap[word].pos.push(i);
                     counts--;
                 } else {
-                    // times out
+                    // can't add more words like `word`
                     start = wordsMap[word].pos.shift() + length;
                     // remove positions before new start
                     for (key in wordsMap) {
@@ -47,10 +47,11 @@ var findSubstring = function (s, words) {
                             counts++;
                         }
                     }
+                    // add current position
                     wordsMap[word].pos.push(i);
                 }
             } else {
-                // does not exists, reset wordsMap
+                // does not exists in `wordsMap`, reset `wordsMap`
                 for (key in wordsMap) {
                     wordsMap[key].pos = [];
                 }
