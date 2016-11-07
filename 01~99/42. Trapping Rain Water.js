@@ -1,4 +1,5 @@
 /**
+ * Explanation just the same as question 11
  * @param {number[]} height
  * @return {number}
  */
