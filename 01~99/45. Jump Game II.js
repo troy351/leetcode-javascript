@@ -13,7 +13,3 @@ var jump = function (nums) {
     }
     return jumps;
 };
-
-console.time('a')
-console.log(jump([2, 3, 1, 1, 4]))
-console.timeEnd('a')
