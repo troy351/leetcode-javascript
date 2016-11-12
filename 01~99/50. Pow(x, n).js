@@ -4,8 +4,8 @@
  * @return {number}
  */
 var myPow = function (x, n) {
-    var nn = Math.abs(n);
-    var result = 1;
+    let nn = Math.abs(n);
+    let result = 1;
     while (nn > 0) {
         if (nn % 2 === 1) result *= x;
         x *= x;

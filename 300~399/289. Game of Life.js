@@ -4,21 +4,20 @@
  */
 var gameOfLife = function (board) {
     // coordinates for eight neighbors
-    var dx = [-1, -1, -1, 0, 1, 1, 1, 0];
-    var dy = [-1, 0, 1, 1, 1, 0, -1, -1];
+    const dx = [-1, -1, -1, 0, 1, 1, 1, 0];
+    const dy = [-1, 0, 1, 1, 1, 0, -1, -1];
 
-    var i, j;
     // state:
     // 0 : dead to dead
     // 1 : live to live
     // 2 : live to dead
     // 3 : dead to live
-    for (i = 0; i < board.length; i++) {
-        for (j = 0; j < board[0].length; j++) {
-            var count = 0;
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[0].length; j++) {
+            let count = 0;
             // count live neighbors
-            for (var k = 0; k < 8; k++) {
-                var x = i + dx[k], y = j + dy[k];
+            for (let k = 0; k < 8; k++) {
+                const x = i + dx[k], y = j + dy[k];
                 if (x >= 0 && x < board.length && y >= 0 && y < board[0].length && (board[x][y] == 1 || board[x][y] == 2)) {
                     ++count;
                 }
@@ -33,8 +32,8 @@ var gameOfLife = function (board) {
         }
     }
 
-    for (i = 0; i < board.length; ++i) {
-        for (j = 0; j < board[0].length; ++j) {
+    for (let i = 0; i < board.length; ++i) {
+        for (let j = 0; j < board[0].length; ++j) {
             board[i][j] %= 2;
         }
     }

@@ -3,8 +3,13 @@
  * @return {boolean}
  */
 var isValid = function (s) {
-    var i = 0;
-    var stack = [];
+    let i = 0;
+    const stack = [];
+
+    const isMatch = (left, right) => {
+        return left === '[' && right === ']' || left === '{' && right === '}' || left === '(' && right === ')';
+    };
+
     while (i < s.length) {
         var c = s[i];
         if ('({['.indexOf(c) !== -1) {
@@ -16,8 +21,4 @@ var isValid = function (s) {
     }
 
     return i === s.length && stack.length === 0;
-
-    function isMatch(left, right) {
-        return left === '[' && right === ']' || left === '{' && right === '}' || left === '(' && right === ')';
-    }
 };

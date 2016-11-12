@@ -11,17 +11,17 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function (l1, l2) {
-    var head = new ListNode(0);
-    var next = new ListNode(0);
+    const head = new ListNode(0);
+    let next = new ListNode(0);
     head.next = next;
 
     var carry = 0;
 
     while (true) {
-        l1 = l1 === null ? new ListNode(0) : l1;
-        l2 = l2 === null ? new ListNode(0) : l2;
+        l1 = l1 || new ListNode(0);
+        l2 = l2 || new ListNode(0);
 
-        var result = l1.val + l2.val + carry;
+        const result = l1.val + l2.val + carry;
         carry = Math.floor(result / 10);
         next.val = result % 10;
 
@@ -31,14 +31,12 @@ var addTwoNumbers = function (l1, l2) {
             break;
         }
 
-        var tmp = new ListNode(0);
-        next.next = tmp;
-        next = tmp;
+        next.next = new ListNode(0);
+        next = next.next;
     }
 
     if (carry !== 0) {
-        tmp = new ListNode(carry);
-        next.next = tmp;
+        next.next = new ListNode(carry);
     }
 
     return head.next;

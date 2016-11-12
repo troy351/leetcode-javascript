@@ -7,18 +7,9 @@ var fourSum = function (nums, target) {
     nums.sort(function (a, b) {
         return a - b;
     });
-    var result = [];
-
-    var i = 0;
-    while (i <= nums.length - 4) {
-        threeSum(i, nums, target - nums[i]);
-        while (nums[i] === nums[++i] && i <= nums.length - 4);
-    }
-
-    return result;
 
     // used code from question 15, made some small changes
-    function threeSum(start, nums, target) {
+    const threeSum = (start, nums, target)=> {
         var i = start + 1;
         while (i < nums.length - 2) {
             var j = i + 1;
@@ -33,7 +24,15 @@ var fourSum = function (nums, target) {
             }
             while (nums[i] === nums[++i] && i < nums.length - 2);
         }
-    }
-};
+    };
 
-console.log(fourSum([1, 0, -1, 0, -2, 2], 0))
+    var result = [];
+    var i = 0;
+
+    while (i <= nums.length - 4) {
+        threeSum(i, nums, target - nums[i]);
+        while (nums[i] === nums[++i] && i <= nums.length - 4);
+    }
+
+    return result;
+};

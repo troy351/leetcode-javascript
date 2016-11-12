@@ -4,9 +4,10 @@
  * @return {number}
  */
 var searchInsert = function (nums, target) {
-    var low = 0, high = nums.length - 1;
+    let low = 0, high = nums.length - 1;
+
     while (low < high) {
-        var mid = Math.floor((low + high) / 2);
+        const mid = Math.floor((low + high) / 2);
         if (nums[mid] === target) {
             return mid;
         } else if (nums[mid] < target) {
@@ -15,5 +16,6 @@ var searchInsert = function (nums, target) {
             high = mid - 1;
         }
     }
+
     return nums[low] < target ? low + 1 : low;
 };

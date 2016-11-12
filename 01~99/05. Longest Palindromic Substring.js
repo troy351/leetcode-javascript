@@ -5,9 +5,9 @@
 var longestPalindrome = function (s) {
     // add `#` between every character to make the string length always odd
     // add `^` & `$` at the top and bottom of the string to make the comparison stop when reaching the edge of the string
-    var T = '^#' + s.split('').join('#') + '#$';
-    var center = 0;
-    var radius = [];
+    const T = '^#' + s.split('').join('#') + '#$';
+    let center = 0;
+    const radius = [];
 
     radius[0] = 0;
 
@@ -16,17 +16,17 @@ var longestPalindrome = function (s) {
      * @param index  the center of the palindrome
      * @param init  the initial length of the palindrome(half length)
      */
-    function findPalindrome(index, init) {
+    const findPalindrome = (index, init)=> {
         init = init || 0;
         radius[index] = init;
         while (T[index + radius[index] + 1] === T[index - radius[index] - 1]) {
             radius[index]++;
         }
-    }
+    };
 
-    for (var i = 1; i < T.length; i++) {
-        var i_ = 2 * center - i;
-        var diff = radius[center] + center - i;
+    for (let i = 1; i < T.length; i++) {
+        const i_ = 2 * center - i;
+        const diff = radius[center] + center - i;
         if (diff >= 0) {
             // within the range of palindrome centered at `center`
             if (diff > radius[i_]) {
@@ -45,8 +45,8 @@ var longestPalindrome = function (s) {
     }
 
     // find the largest number's position in `radius` array
-    var longestPosition = 0;
-    radius.forEach(function (value, index) {
+    let longestPosition = 0;
+    radius.forEach((value, index)=> {
         longestPosition = value > radius[longestPosition] ? index : longestPosition;
     });
 

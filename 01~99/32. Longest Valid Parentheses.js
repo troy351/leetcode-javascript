@@ -3,10 +3,10 @@
  * @return {number}
  */
 var longestValidParentheses = function (s) {
-    var stack = [];
-    var result = 0;
+    const stack = [];
+    let result = 0;
     // match all matchable parentheses, only unmatchable parentheses will be left in stack
-    for (var i = 0; i < s.length; i++) {
+    for (let i = 0; i < s.length; i++) {
         if (s[i] === '(') {
             stack.push(i);
         } else {
@@ -22,7 +22,7 @@ var longestValidParentheses = function (s) {
     if (stack.length === 0) {
         result = s.length;
     } else {
-        var right = s.length, left = 0;
+        let right = s.length, left = 0;
         while (stack.length > 0) {
             left = stack.pop();
             result = Math.max(result, right - left - 1);

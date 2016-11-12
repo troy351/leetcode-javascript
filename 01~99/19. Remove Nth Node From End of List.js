@@ -11,8 +11,8 @@
  * @return {ListNode}
  */
 var removeNthFromEnd = function (head, n) {
-    var probe = head;
-    var nth = head;
+    let probe = head;
+    let nth = head;
     while (n-- > 0) {
         probe = probe.next;
     }

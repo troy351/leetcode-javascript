@@ -4,9 +4,7 @@
  * @return {boolean}
  */
 var isMatch = function (s, p) {
-    return backTrack(s.length, p.length);
-
-    function backTrack(i, j) {
+    var backTrack = (i, j)=> {
         if (i === 0 && j === 0) return true;
         if (i !== 0 && j === 0) return false;
         if (i === 0 && j !== 0) {
@@ -26,5 +24,7 @@ var isMatch = function (s, p) {
             return false;
         }
         return false;
-    }
+    };
+
+    return backTrack(s.length, p.length);
 };

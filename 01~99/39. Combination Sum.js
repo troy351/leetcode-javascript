@@ -5,18 +5,16 @@
  */
 var combinationSum = function (candidates, target) {
     // sort candidates
-    candidates.sort(function (a, b) {
-        return a - b;
-    });
+    candidates.sort((a, b)=> a - b);
 
-    for (var end = candidates.length - 1; end >= 0; end--) {
+    let end;
+    for (end = candidates.length - 1; end >= 0; end--) {
         if (candidates[end] <= target) break;
     }
 
-    var results = [], result = [];
-    findCombination(target, end);
+    const results = [], result = [];
 
-    function findCombination(n, pos) {
+    const findCombination=(n, pos)=> {
         // out of range
         if (pos < 0 || n < 0) return;
         // found a solution
@@ -27,12 +25,14 @@ var combinationSum = function (candidates, target) {
 
         while (candidates[pos] > n) pos--;
 
-        for (var i = pos; i >= 0; i--) {
+        for (let i = pos; i >= 0; i--) {
             result.push(candidates[i]);
             findCombination(n - candidates[i], i);
             result.pop();
         }
-    }
+    };
+
+    findCombination(target, end);
 
     return results;
 };

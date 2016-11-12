@@ -3,7 +3,7 @@
  * @return {number}
  */
 var romanToInt = function (s) {
-    var roman = [];
+    const roman = [];
     roman['I'] = 1;
     roman['V'] = 5;
     roman['X'] = 10;
@@ -12,9 +12,9 @@ var romanToInt = function (s) {
     roman['D'] = 500;
     roman['M'] = 1000;
 
-    var result = roman[s[s.length - 1]];
+    let result = roman[s[s.length - 1]];
 
-    for (var i = s.length - 2; i >= 0; i--) {
+    for (let i = s.length - 2; i >= 0; i--) {
         result += roman[s[i + 1]] > roman[s[i]] ? -roman[s[i]] : roman[s[i]];
     }
 

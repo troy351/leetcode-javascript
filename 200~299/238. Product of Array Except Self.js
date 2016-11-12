@@ -3,17 +3,17 @@
  * @return {number[]}
  */
 var productExceptSelf = function (nums) {
-    var result = [], i;
+    const result = [];
 
     // left part
     result[0] = 1;
-    for (i = 1; i < nums.length; i++) {
+    for (let i = 1; i < nums.length; i++) {
         result[i] = result[i - 1] * nums[i - 1];
     }
 
     // right part
-    var right = 1;
-    for (i = nums.length - 1; i >= 0; i--) {
+    let right = 1;
+    for (let i = nums.length - 1; i >= 0; i--) {
         result[i] *= right;
         right *= nums[i];
     }

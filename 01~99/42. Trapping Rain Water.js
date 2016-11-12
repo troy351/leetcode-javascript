@@ -4,9 +4,9 @@
  * @return {number}
  */
 var trap = function (height) {
-    var left = 0, right = height.length - 1;
-    var maxLeft = 0, maxRight = 0;
-    var result = 0;
+    let left = 0, right = height.length - 1;
+    let maxLeft = 0, maxRight = 0;
+    let result = 0;
     while (left < right) {
         if (height[left] < height[right]) {
             if (height[left] > maxLeft) {

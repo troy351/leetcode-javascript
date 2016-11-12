@@ -7,24 +7,26 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var nextPermutation = function (nums) {
-    for (var i = nums.length - 1; i > 0; i--) {
+    const swap = (a, b) => {
+        const temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
+    };
+
+    let i;
+    for (i = nums.length - 1; i > 0; i--) {
         if (nums[i] > nums[i - 1]) {
-            for (var j = nums.length - 1; j >= i; j--) {
+            let j;
+            for (j = nums.length - 1; j >= i; j--) {
                 if (nums[j] > nums[i - 1]) break;
             }
-            exchange(j, i - 1);
+            swap(j, i - 1);
             break;
         }
     }
 
-    var mid = (nums.length + i - 1) / 2;
+    const mid = (nums.length + i - 1) / 2;
     for (; i < mid; i++) {
-        exchange(i, mid * 2 - i);
-    }
-
-    function exchange(a, b) {
-        var temp = nums[a];
-        nums[a] = nums[b];
-        nums[b] = temp;
+        swap(i, mid * 2 - i);
     }
 };

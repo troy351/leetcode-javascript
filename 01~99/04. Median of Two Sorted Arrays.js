@@ -9,16 +9,19 @@ var findMedianSortedArrays = function (nums1, nums2) {
         return findMedianSortedArrays(nums2, nums1);
     }
 
-    var imin = 0, imax = nums1.length, halfLen = Math.floor((nums1.length + nums2.length + 1) / 2);
+    let imin = 0, imax = nums1.length, halfLen = Math.floor((nums1.length + nums2.length + 1) / 2);
+
     while (imin <= imax) {
-        var i = Math.floor((imin + imax) / 2);
-        var j = halfLen - i;
+        const i = Math.floor((imin + imax) / 2);
+        const j = halfLen - i;
+
         if (i < nums1.length && nums2[j - 1] > nums1[i]) {
             imin = i + 1;
         } else if (i > 0 && nums1[i - 1] > nums2[j]) {
             imax = i - 1;
         } else {
-            var maxLeft = 0, minRight = 0;
+            let maxLeft = 0, minRight = 0;
+
             if (i === 0) {
                 maxLeft = nums2[j - 1];
             } else if (j === 0) {

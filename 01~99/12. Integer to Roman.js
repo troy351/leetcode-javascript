@@ -3,7 +3,7 @@
  * @return {string}
  */
 var intToRoman = function (num) {
-    var roman = [];
+    const roman = [];
     roman[1] = 'I';
     roman[5] = 'V';
     roman[10] = 'X';
@@ -12,10 +12,11 @@ var intToRoman = function (num) {
     roman[500] = 'D';
     roman[1000] = 'M';
 
-    var base = 1, result = '';
+    let base = 1, result = '';
+
     while (num > 0) {
-        var rnum = '';
-        var unit = num % 10;
+        let rnum = '';
+        let unit = num % 10;
         num = Math.floor(num / 10);
         if (unit !== 0) {
             if (unit < 4) {

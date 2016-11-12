@@ -4,23 +4,14 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-    var map = new Map();
-    var results = [];
-    nums.filter(function (element, index, array) {
-        map.set(element, index);
-    });
+    const num = nums.slice().sort((a, b)=>a - b);
 
-    nums.every(function (element, index, array) {
-        if (map.get(target - element) === undefined || map.get(target - element) === index) {
-            // not found
-            return true;
-        } else {
-            // found
-            results.push(index);
-            results.push(map.get(target - element));
-            return false;
-        }
-    });
-
-    return results.sort();
+    let l = 0, r = num.length - 1;
+    while (l < r) {
+        if (num[l] + num[r] === target)
+            // reverse for `num * 2 == target`
+            return [nums.findIndex(v=>v === num[l]), nums.length - 1 - nums.reverse().findIndex(v=>v === num[r])];
+        else if (num[l] + num[r] < target) l++;
+        else r--;
+    }
 };

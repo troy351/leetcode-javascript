@@ -6,12 +6,13 @@ var threeSum = function (nums) {
     nums.sort(function (a, b) {
         return a - b;
     });
-    var result = [];
-    var i = 0;
+
+    const result = [];
+    let i = 0;
 
     while (i < nums.length - 2) {
-        var j = i + 1;
-        var k = nums.length - 1;
+        let j = i + 1;
+        let k = nums.length - 1;
         while (j < k) {
             var sum = nums[i] + nums[j] + nums[k];
             if (sum === 0) result.push([nums[i], nums[j], nums[k]]);

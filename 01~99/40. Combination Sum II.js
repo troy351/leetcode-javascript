@@ -5,37 +5,37 @@
  */
 var combinationSum2 = function (candidates, target) {
     // sort candidates
-    candidates.sort(function (a, b) {
-        return a - b;
-    });
+    candidates.sort((a, b)=> a - b);
 
-    for (var end = candidates.length - 1; end >= 0; end--) {
+    let end;
+    for (end = candidates.length - 1; end >= 0; end--) {
         if (candidates[end] <= target) break;
     }
 
-    var results = [], result = [], repetition = {};
-    findCombination(target, end);
+    const results = [], result = [], repetition = new Set();
 
-    function findCombination(n, pos) {
+    const findCombination = (n, pos) => {
         // out of range
         if (pos < -1 || n < 0) return;
         // found a solution
         if (n === 0) {
-            if (repetition[result.toString()] === undefined) {
+            if (!repetition.has(result.toString())) {
                 results.push(result.slice());
-                repetition[result.toString()] = 1;
+                repetition.add(result.toString());
             }
             return;
         }
 
         while (candidates[pos] > n) pos--;
 
-        for (var i = pos; i >= 0; i--) {
+        for (let i = pos; i >= 0; i--) {
             result.push(candidates[i]);
             findCombination(n - candidates[i], i - 1);
             result.pop();
         }
-    }
+    };
+
+    findCombination(target, end);
 
     return results;
 };

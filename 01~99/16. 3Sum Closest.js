@@ -7,11 +7,12 @@ var threeSumClosest = function (nums, target) {
     nums.sort(function (a, b) {
         return a - b;
     });
-    var i = 0, closest = Number.MAX_VALUE;
+
+    let i = 0, closest = Number.MAX_VALUE;
 
     while (i < nums.length - 2) {
-        var j = i + 1;
-        var k = nums.length - 1;
+        let j = i + 1;
+        let k = nums.length - 1;
         while (j < k) {
             var sum = nums[i] + nums[j] + nums[k];
             if (Math.abs(sum - target) < Math.abs(closest - target)) closest = sum;
