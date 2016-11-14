@@ -23,6 +23,7 @@ var fourSumCount = function (A, B, C, D) {
         if (ab[l] + cd[r] === 0) {
             l++;
             r--;
+            // find duplicate numbers
             let x = 1, y = 1;
             while (ab[l] === ab[l - 1]) {
                 x++;
@@ -33,11 +34,7 @@ var fourSumCount = function (A, B, C, D) {
                 r--;
             }
 
-            if (x * y === 0) {
-                count += x + y;
-            } else {
-                count += x * y;
-            }
+            count += x * y;
         } else {
             if (ab[l] + cd[r] < 0) {
                 l++;
