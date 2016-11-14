@@ -17,21 +17,16 @@ var solveSudoku = function (board) {
     // find all possible numbers in every row/column/block, saved as binary
     // e.g. `row[i] = 200` row i still lack of 4,6,8 because 200(10) = 11001000(2)
     const findCandidates = ()=> {
-        const row = [], column = [], block = [];
+        const row = new Array(9).fill(0), column = row.slice(), block = row.slice();
         for (let i = 0; i < 9; i++) {
             for (let j = 0; j < 9; j++) {
                 if (board[i][j] !== '.') {
                     const num = +board[i][j] - 1;
 
-                    if (row[i]) row[i] |= 1 << num;
-                    else row[i] = 1 << num;
-
-                    if (column[j]) column[j] |= 1 << num;
-                    else column[j] = 1 << num;
-
+                    row[i] |= 1 << num;
+                    column[j] |= 1 << num;
                     const bn = Math.floor(i / 3) * 3 + Math.floor(j / 3);
-                    if (block[bn]) block[bn] |= 1 << num;
-                    else block[bn] = 1 << num;
+                    block[bn] |= 1 << num;
                 }
             }
         }
