@@ -18,5 +18,3 @@ var plusOne = function (digits) {
 
     return result;
 };
-
-console.log(plusOne([9,9]));
