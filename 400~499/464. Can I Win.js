@@ -4,7 +4,9 @@
  * @return {boolean}
  */
 var canIWin = function (maxChoosableInteger, desiredTotal) {
-    const canWin = (total, state, map)=> {
+    const map = new Map();
+
+    const canWin = (total, state)=> {
         if (map.has(state)) return map.get(state);
         for (let i = 0; i < maxChoosableInteger; i++) {
             if ((1 << i & state) === 0) {
@@ -15,11 +17,12 @@ var canIWin = function (maxChoosableInteger, desiredTotal) {
             }
         }
         map.set(state, false);
+
         return false;
     };
 
     if (maxChoosableInteger >= desiredTotal) return true;
     if (maxChoosableInteger * (maxChoosableInteger + 1) / 2 < desiredTotal) return false;
 
-    return canWin(desiredTotal, 0, new Map());
+    return canWin(desiredTotal, 0);
 };
