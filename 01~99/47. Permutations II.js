@@ -6,12 +6,6 @@ var permuteUnique = function (nums) {
     const result = [];
     nums.sort((a, b)=>a - b);
 
-    const swap = (nums, a, b)=> {
-        const temp = nums[a];
-        nums[a] = nums[b];
-        nums[b] = temp;
-    };
-
     const getPermutations = (nums, n)=> {
         if (n === nums.length) {
             result.push(nums.slice());
@@ -19,7 +13,7 @@ var permuteUnique = function (nums) {
             const num = nums.slice();
             for (let i = n; i < num.length; i++) {
                 if (i !== n && num[i] === num[n]) continue;
-                swap(num, i, n);
+                [num[i], num[n]] = [num[n], num[i]];
                 getPermutations(num, n + 1);
             }
         }
