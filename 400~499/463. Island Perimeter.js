@@ -7,7 +7,7 @@ var islandPerimeter = function (grid) {
     let used = new Array(grid.length).fill(0).map(v=>new Array(grid[0].length).fill(false));
 
     const search = (x, y)=> {
-        if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] === 0 || used[x][y] === true) return;
+        if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] === 0 || used[x][y]) return;
         used[x][y] = true;
         let edges = 4;
         // left
