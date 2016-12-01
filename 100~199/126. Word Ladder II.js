@@ -10,28 +10,28 @@ var findLadders = function (beginWord, endWord, wordList) {
     if (beginWord == endWord) return [];
 
     const paths = [], path = [beginWord];
-    const forward = new Set(), backward = new Set(), tree = new Map();
-    let reversed = false;
+    let forward = new Set(), backward = new Set();
+    const tree = new Map();
+    let reversed = false, found = false;
 
+    wordList.delete(beginWord);
+    wordList.delete(endWord);
     wordList.forEach(word=> {
         tree.set(word, new Set());
     });
-
     tree.set(beginWord, new Set());
     tree.set(endWord, new Set());
+
     forward.add(beginWord);
     backward.add(endWord);
 
-    const buildTree = (forward, backward, reversed)=> {
-        if (forward.size === 0) return false;
-        if (forward.size > backward.size) return buildTree(backward, forward, !reversed);
-
-        forward.forEach(word=>wordList.delete(word));
-        backward.forEach(word=>wordList.delete(word));
+    while (forward.size !== 0 && !found) {
+        if (forward.size > backward.size) {
+            [forward, backward] = [backward, forward];
+            reversed = !reversed;
+        }
 
         const nextLevel = new Set();
-        let done = false;
-
         forward.forEach(w=> {
             const word = w.split('');
             for (let i = 0; i < word.length; i++) {
@@ -41,19 +41,22 @@ var findLadders = function (beginWord, endWord, wordList) {
                     word[i] = String.fromCharCode(l + 96);
                     const newWord = word.join('');
                     if (backward.has(newWord)) {
-                        done = true;
-                        !reversed ? tree.get(w).add(newWord) : tree.get(newWord).add(w);
-                    } else if (!done && wordList.has(newWord)) {
+                        reversed ? tree.get(newWord).add(w) : tree.get(w).add(newWord);
+                        found = true;
+                    } else if (!found && wordList.has(newWord)) {
+                        reversed ? tree.get(newWord).add(w) : tree.get(w).add(newWord);
                         nextLevel.add(newWord);
-                        !reversed ? tree.get(w).add(newWord) : tree.get(newWord).add(w);
                     }
                 }
                 word[i] = original;
             }
         });
 
-        return done || buildTree(nextLevel, backward, reversed);
-    };
+        nextLevel.forEach(word=> {
+            wordList.delete(word);
+        });
+        forward = nextLevel;
+    }
 
     const getPath = (beginWord, endWord)=> {
         if (beginWord === endWord) {
@@ -67,7 +70,6 @@ var findLadders = function (beginWord, endWord, wordList) {
         }
     };
 
-    buildTree(forward, backward, reversed);
     getPath(beginWord, endWord);
     return paths;
 };
