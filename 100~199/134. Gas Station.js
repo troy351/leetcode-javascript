@@ -14,5 +14,3 @@ var canCompleteCircuit = function (gas, cost) {
     }
     return total < 0 ? -1 : (start + 1) % gas.length;
 };
-
-console.log(canCompleteCircuit([4], [5]));
