@@ -11,5 +11,3 @@ var singleNumber = function (nums) {
 
     return result;
 };
-
-console.log(singleNumber([1, 2, 1, 3, 2, 5]))
