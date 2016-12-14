@@ -9,7 +9,7 @@ var findMin = function (nums) {
         if (nums[start] < nums[end])
             return nums[start];
 
-        const mid = (start + end) / 2 >> 0;
+        const mid = (start + end) >> 1;
 
         if (nums[mid] >= nums[start]) {
             start = mid + 1;
