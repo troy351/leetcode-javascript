@@ -13,7 +13,7 @@ var findMin = function (nums) {
         } else if (nums[mid] < nums[high]) {
             high = mid;
         } else {
-            // when num[mid] and num[hi] are same
+            // when num[mid] and num[high] are same
             high--;
         }
     }
