@@ -48,6 +48,3 @@ var fractionToDecimal = function (numerator, denominator) {
 
     return res;
 };
-
-console.log(fractionToDecimal(1,
-    214748364))
