@@ -3,27 +3,24 @@
  * @return {number}
  */
 var findSubstringInWraproundString = function (p) {
-    if (p.length === 0) return 0;
+    // count[i] is the maximum unique substring end with ith letter.
+    // 0 - 'a', 1 - 'b', ..., 25 - 'z'.
+    const count = Array.from({length: 26}).fill(0);
 
-    p += p[p.length - 1];
-    const sub = new Array(26).fill(0).map(() => new Set()), charCode = p.split('').map(v => v.charCodeAt(0) - 97);
-    let start = 0, end = 0;
-    while (true) {
-        while (charCode[end + 1] - charCode[end] === 1 || charCode[end] - charCode[end + 1] === 25) end++;
-        if (end === p.length - 1) break;
-        let pos = start;
-        while (pos <= end) {
-            for (let j = pos; j <= end; j++) {
-                sub[charCode[pos]].add(j - pos);
-            }
-            pos++;
-            if (charCode[pos] === charCode[start]) break;
+    // store longest contiguous substring ends at current position.
+    let maxLengthCur = 0;
+
+    for (let i = 0; i < p.length; i++) {
+        if (i > 0 && (p.charCodeAt(i) - p.charCodeAt(i - 1) === 1 || p.charCodeAt(i - 1) - p.charCodeAt(i) === 25)) {
+            maxLengthCur++;
+        } else {
+            maxLengthCur = 1;
         }
-        end++;
-        start = end;
+
+        const index = p.charCodeAt(i) - 97;
+        count[index] = Math.max(count[index], maxLengthCur);
     }
 
-    let count = 0;
-    sub.forEach(set => count += set.size);
-    return count;
+    // Sum to get result
+    return count.reduce((a, b) => a + b, 0);
 };
